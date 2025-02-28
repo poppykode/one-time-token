@@ -1,0 +1,27 @@
+version: '3.8'
+services:
+  postgres:
+    image: 'postgres:latest'
+    container_name: postgres-ott-container
+    environment:
+      - 'POSTGRES_DB=${DATABASE_NAME}'
+      - 'POSTGRES_PASSWORD=${DATABASE_PASSWORD}'
+      - 'POSTGRES_USER=${DATABASE_USER}'
+    ports:
+      - '5432:5432'
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin-ott-container
+    environment:
+      - 'PGADMIN_DEFAULT_EMAIL=ngonimug@gmail.com'
+      - 'PGADMIN_DEFAULT_PASSWORD=admin'
+    ports:
+      - "8081:80"
+    depends_on:
+      - postgres
+
+volumes:
+  postgres_data:
