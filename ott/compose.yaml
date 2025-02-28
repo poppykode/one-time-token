@@ -3,6 +3,7 @@ services:
   postgres:
     image: 'postgres:latest'
     container_name: postgres-ott-container
+    restart: unless-stopped
     environment:
       - 'POSTGRES_DB=${DATABASE_NAME}'
       - 'POSTGRES_PASSWORD=${DATABASE_PASSWORD}'
@@ -15,6 +16,7 @@ services:
   pgadmin:
     image: dpage/pgadmin4
     container_name: pgadmin-ott-container
+    restart: unless-stopped
     environment:
       - 'PGADMIN_DEFAULT_EMAIL=ngonimug@gmail.com'
       - 'PGADMIN_DEFAULT_PASSWORD=admin'
